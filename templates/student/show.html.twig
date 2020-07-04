@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        td {
+            width: 100px;
+            text-align: center;
+            vertical-align: center;
+        }
+
+        .DisplayList{
+            margin: auto;
+            width: 50%;
+            border: 3px solid green;
+            padding: 10px;
+        }
+    </style>
+    <div class="DisplayList">
+        <table border="1px solid">
+            <tr>
+                <th>ID</th>
+                <th>name</th>
+                <th>age</th>
+                <th>adress</th>
+                <th>image</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for student in studentList %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.age }}</td>
+                    <td>{{ student.adress }}</td>
+                    <td>
+                        <img src="{{ asset('uploads/'~ student.image) }}" alt="" width="390ppx" height="150px">
+                    </td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                </tr>
+            {% endfor%}
+        </table>
+    </div>
+
+{% endblock %}
+
+

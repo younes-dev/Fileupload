@@ -1,0 +1,126 @@
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}Hello StudentController!{% endblock %}#}
+
+{#{% block body %}#}
+
+{#<div class="conainer">#}
+{#<h1>Bienvenue</h1>#}
+
+{#    {{ form_start(formStudent) }}#}
+{#    {{ form_widget(formStudent) }}#}
+{#    {{ form_end(formStudent) }}#}
+
+{#</div>#}
+{#{% endblock %}#}
+
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+    <script language = "javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
+{% endblock %}
+{% block stylesheets %}
+    <style>
+        #simpleform {
+            width:600px;
+            border:2px solid grey;
+            padding:14px;
+        }
+        #simpleform label {
+            font-size:12px;
+            float:left;
+            width:300px;
+            text-align:right;
+            display:block;
+        }
+        #simpleform span {
+            font-size:11px;
+            color:grey;
+            width:100px;
+            text-align:right;
+            display:block;
+        }
+        #simpleform input {
+            border:1px solid grey;
+            font-family:verdana;
+            font-size:14px;
+            color:grey;
+            height:24px;
+            width:250px;
+            margin: 0 0 20px 10px;
+        }
+        #simpleform button {
+            clear:both;
+            margin-left:250px;
+            background:grey;
+            color:#FFFFFF;
+            border:solid 1px #666666;
+            font-size:16px;
+        }
+            td {
+                width: 100px;
+                text-align: center;
+                vertical-align: center;
+            }
+
+        .container,.DisplayList,#simpleform{
+            margin: auto;
+            width: 50%;
+            border: 3px solid green;
+            padding: 10px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <h3>Student form</h3>
+        <div id="simpleform">
+{#            {{ form_start(formStudent) }}#}
+{#            {{ form_widget(formStudent) }}#}
+{#            {{ form_end(formStudent) }}#}
+
+            {{ form_start(formStudent) }}
+            {{ form_row(formStudent.name) }}
+            {{ form_row(formStudent.age) }}
+            {{ form_row(formStudent.adress) }}
+            {{ form_row(formStudent.image, {'label': 'your image here : '}) }}
+
+{#            {{ form_row(formStudent.image) }}#}
+            {{ form_end(formStudent) }}
+        </div>
+
+        <br><br>
+
+        <div class="DisplayList">
+            <table border="1px solid">
+                <tr>
+                    <th>ID</th>
+                    <th>name</th>
+                    <th>age</th>
+                    <th>adress</th>
+                    <th>image</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                {% for student in studentList %}
+                    <tr>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.age }}</td>
+                        <td>{{ student.adress }}</td>
+                        <td>
+                            <img src="{{ asset('uploads/'~ student.image) }}" alt="" width="100ppx" height="100px">
+                        </td>
+                        <td>
+                            <a href="{{ path('edit_student',{'id': student.id}) }}">Edit</a>
+
+                        </td>
+                        <td>
+                            <a href="{{ path('delete_student',{'id': student.id}) }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor%}
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
