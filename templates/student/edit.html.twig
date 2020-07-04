@@ -3,14 +3,64 @@
 {% block body %}
 <div class="container">
     <h3>Student form</h3>
-    <div id="simpleform">
+{#        {{ form_start(formStudent) }}#}
+{#        {{ form_widget(formStudent) }}#}
+{#        {{ form_end(formStudent) }}#}
+
         {{ form_start(formStudent) }}
-        {{ form_widget(formStudent) }}
+        {{ form_row(formStudent.name) }}
+
+        {{ form_row(formStudent.age) }}
+
+        {{ form_row(formStudent.adress) }}
+        <img src="{{ asset('uploads/'~ formStudent.image.vars.data) }}" id="img">
+
+        {{ form_row(formStudent.image,{'attr':{'class':'uploadImage'}}) }}
+
         {{ form_end(formStudent) }}
     </div>
+
+    <script>
+
+        $('.uploadImage').change(myUploadOnChangeFunction);
+
+        function createObjectURL(object) {
+            return (window.URL) ? window.URL.createObjectURL(object) : window.webkitURL.createObjectURL(object);
+        }
+
+        function revokeObjectURL(url) {
+            return (window.URL) ? window.URL.revokeObjectURL(url) : window.webkitURL.revokeObjectURL(url);
+        }
+
+        function myUploadOnChangeFunction() {
+            if(this.files.length) {
+                for(var i in this.files) {
+                    if(this.files.hasOwnProperty(i)){
+                        console.log(i);
+                        var src = createObjectURL(this.files[i]);
+                        var image = new Image();
+                        image.src = src;
+                        $('#img').attr('src', src);
+                    }
+                    // Do whatever you want with your image, it's just like any other image
+                    // but it displays directly from the user machine, not the server!
+                }
+            }
+        }
+
+    </script>
+
 {% endblock %}
 
 {% block stylesheets %}
+    <style>
+
+    #img{
+    height: 180px;
+    width: 254px;
+    margin-left: 10px;
+    }
+    </style>
 
 {% endblock %}
 

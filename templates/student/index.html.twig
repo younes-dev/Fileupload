@@ -15,9 +15,6 @@
 {#{% endblock %}#}
 
 {% extends 'base.html.twig' %}
-{% block javascripts %}
-    <script language = "javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
-{% endblock %}
 {% block stylesheets %}
     <style>
         #simpleform {
@@ -68,6 +65,12 @@
             border: 3px solid green;
             padding: 10px;
         }
+
+        #img{
+            height: 180px;
+            width: 254px;
+            margin-left: 10px;
+        }
     </style>
 {% endblock %}
 {% block body %}
@@ -79,10 +82,17 @@
 {#            {{ form_end(formStudent) }}#}
 
             {{ form_start(formStudent) }}
+            {{ form_label(formStudent.name) }}
             {{ form_row(formStudent.name) }}
+
+            {{ form_label(formStudent.age) }}
             {{ form_row(formStudent.age) }}
+
+            {{ form_label(formStudent.adress) }}
+
             {{ form_row(formStudent.adress) }}
-            {{ form_row(formStudent.image, {'label': 'your image here : '}) }}
+            <img id="img">
+            {{ form_row(formStudent.image,{'attr':{'class':'uploadImage'}}) }}
 
 {#            {{ form_row(formStudent.image) }}#}
             {{ form_end(formStudent) }}
@@ -123,4 +133,33 @@
         </div>
     </div>
 
+    <script>
+
+        $('.uploadImage').change(myUploadOnChangeFunction);
+
+        function createObjectURL(object) {
+            return (window.URL) ? window.URL.createObjectURL(object) : window.webkitURL.createObjectURL(object);
+        }
+
+        function revokeObjectURL(url) {
+            return (window.URL) ? window.URL.revokeObjectURL(url) : window.webkitURL.revokeObjectURL(url);
+        }
+
+        function myUploadOnChangeFunction() {
+            if(this.files.length) {
+                for(var i in this.files) {
+                    if(this.files.hasOwnProperty(i)){
+                        console.log(i);
+                        var src = createObjectURL(this.files[i]);
+                        var image = new Image();
+                        image.src = src;
+                        $('#img').attr('src', src);
+                    }
+                    // Do whatever you want with your image, it's just like any other image
+                    // but it displays directly from the user machine, not the server!
+                }
+            }
+        }
+
+    </script>
 {% endblock %}

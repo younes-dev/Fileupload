@@ -96,104 +96,6 @@ class StudentController extends AbstractController
     }
 
 
-//    /**
-//     * @Route("/edit/{id}", name="edit_student")
-//     * @param Student $student
-//     * @param Request $request
-//     * @param EntityManagerInterface $manager
-//     * @param UploaderHelper $uploaderHelper
-//     * @return RedirectResponse|Response
-//     */
-//    public function Update(int $id,Student $student,Request $request, EntityManagerInterface $manager,UploaderHelper $uploaderHelper)
-//    {
-//
-//        $form = $this->createForm(StudentType::class, $student);
-//        $form->handleRequest($request);
-//        $path = $this->getParameter("upload_directory").'/'.$student->getImage();
-//
-////        $oldFileNamePath = $this->getParameter("upload_directory").'/'.$oldFileName->getImage();
-////        $uploadedFile=$student->getImage();
-//
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//             if (file_exists($path)) {
-//                 dump($path);die;
-//                    @unlink($path);
-//                 $manager->remove($student);
-//                 $manager->flush();
-//             }
-//
-////            $student =$manager->getRepository(Student::class)->find($id);
-//            $uploadedFile=$student->getImage();
-//            $newFilename = $uploaderHelper->uploadImage($uploadedFile);
-//            $student->setImage($newFilename);
-//
-//            $manager->persist($student);
-//            $manager->flush();
-////
-//            $this->addFlash('success', 'Article Created! Knowledge is power!');
-////
-//            return $this->redirectToRoute('student');
-//        }
-//
-//        return $this->render('student/edit.html.twig', [
-//            'formStudent' => $form->createView(),
-////            "studentList" => $studentList
-//
-//        ]);
-//
-//    }
-
-
-//    /**
-//     * @Route("/edit/{id}", name="edit_student")
-//     * @param int $id
-//     * @param Student $student
-//     * @param Request $request
-//     * @param EntityManagerInterface $manager
-//     * @param UploaderHelper $uploaderHelper
-//     * @return RedirectResponse|Response
-//     */
-//    public function Update(int $id,Student $student,Request $request, EntityManagerInterface $manager,UploaderHelper $uploaderHelper)
-//    {
-//
-//        $form = $this->createForm(StudentType::class, $student);
-//        $form->handleRequest($request);
-//
-////        $path = $this->getParameter("upload_directory").'/'.$student->getImage();
-//
-////        $oldFileNamePath = $this->getParameter("upload_directory").'/'.$oldFileName->getImage();
-////        $uploadedFile=$student->getImage();
-//
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $path = $this->getParameter("upload_directory") . '/' . $student->getImage();
-//            if (file_exists($path)) {
-//                @unlink($path);
-//                $manager->remove($student);
-//                $manager->flush();
-//            }
-//
-//            $student = $manager->getRepository(Student::class)->find($id);
-//            $uploadedFile = $form->get('image')->getData();
-//            $newFilename = $uploaderHelper->uploadImage($uploadedFile);
-//            $student->setImage($newFilename);
-//
-//            $manager->persist($student);
-//            $manager->flush();
-//
-//            $this->addFlash('success', 'Article Created! Knowledge is power!');
-//
-//            return $this->redirectToRoute('student');
-//        }
-//
-//        return $this->render('student/edit.html.twig', [
-//            'formStudent' => $form->createView(),
-////            "studentList" => $studentList
-//
-//        ]);
-//
-//    }
 
 
     /**
@@ -234,16 +136,7 @@ class StudentController extends AbstractController
             'formStudent' => $form->createView()
         ]);
     }
-
-
-
-
-
-
-
-
-
-
+    
 
 
 //    /**
@@ -265,15 +158,6 @@ class StudentController extends AbstractController
 
 
 }
-
-
-
-
-
-
-
-
-
 
 
 
